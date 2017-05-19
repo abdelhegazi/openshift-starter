@@ -1,0 +1,8 @@
+kind: ImageStream
+apiVersion: v1
+metadata:
+  name: ruby
+  annotations:
+    openshift.io/image.insecureRepository: "true" 
+  spec:
+    dockerImageRepository: ruby

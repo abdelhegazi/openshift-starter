@@ -6,7 +6,7 @@ items:
   kind: ConfigMap
   metadata:
     name: vault
-    namespace: aqua-security
+    namespace: security
   data:
     config.hcl: |-
       storage "consul" {
@@ -67,7 +67,6 @@ items:
     - name: consuldns
       port: 8600
       targetPort: 8600
-    # *.consulvault.aqua-security.svc.cluster.local
     selector:
       app: consulvault
 
@@ -100,7 +99,7 @@ items:
         containers:
         # vault container
         - name: vault
-          image: {{ atomic_registry }}/aqua-security/vault:{{ vault_version }}
+          image: vault:latest
           command: ["/bin/vault", "server", "-config", "/vault/config/config.hcl"]     
           imagePullPolicy: Always
           volumeMounts:
@@ -118,7 +117,7 @@ items:
             name: vault-telemetry
         # consul container
         - name: consul
-          image: consul/consul:latest
+          image: consul:latest
           imagePullPolicy: Always
           env:
           - name: POD_IP

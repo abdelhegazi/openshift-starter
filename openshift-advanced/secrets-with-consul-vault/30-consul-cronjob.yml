@@ -15,7 +15,7 @@ spec:
         spec:
           nodeSelector:
             region: infra
-          serviceAccount: aqua-account
+          serviceAccount: security
           containers:
           - name: consul
             image: consul/consul:latest
